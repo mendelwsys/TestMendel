@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="TestMendel:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TestMendel_jar</output-path>
+    <root id="root">
+      <element id="archive" name="TestMendel.jar">
+        <element id="module-output" name="TestMendel" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,55 @@
+
+
+SELECT product,COUNT(*) as cnt FROM T_START st   
+ WHERE time_stamp > TIMESTAMP('2021-08-20','00:01:01')  AND 
+ time_stamp < TIMESTAMP('2021-09-20','00:01:01') GROUP BY product 
+ ORDER by CNT DESC
+
+
+24_O16_0001 | 24_O27_0001 | 24_O24_0001 | 24_O23_0001 | 24_O22_0
+
+PRODUCT    |CNT
+-----------------------
+24_O16_0001|36
+24_O27_0001|31
+24_O24_0001|27
+24_O23_0001|25
+24_O22_0001|25
+24_O19_0001|25
+24_O21_0001|23
+24_O26_0001|20
+24_O17_0001|20
+24_O25_0001|17
+24_O20_0001|17
+24_O18_0001|17
+24_O28_0001|11
+24_O15_0001|6
+
+
+DELETE  FROM T_START AS DL WHERE EXISTS ( 
+SELECT * FROM ( select app_num app_n ,min(id) as mn from T_START 
+group by app_num HAVING count(*)>1 ) AS A 
+WHERE DL.app_num = A.app_n AND DL.id <> A.mn );
+
+
+SELECT * FROM 
+(select app_num app_n, id from T_START ) AS B 
+(select app_num app_n ,min(id) mn from T_START group by app_num HAVING count(*)>1 ) AS A 
+
+
+SELECT tb.app_num,tb.time_stamp FROM T_BEGIN tb LEFT JOIN T_END te ON tb.step_guid=te.step_guid
+ WHERE  tb.step_id='DSC' AND te.id IS NULL AND {fn TIMESTAMPDIFF( SQL_TSI_HOUR, tb.time_stamp, CURRENT_TIMESTAMP) } > 6*24;
+
+
+
+DELETE from T_START WHERE ID IN 
+(select  id from T_START AS S,
+(select app_num app_n ,min(id) mn,count(*) cnt from T_START group by app_num HAVING count(*)>1 ) AS A 
+WHERE A.app_n = app_num and id<>mn);
+
+
+(select app_num app_n ,min(id) mn,count(*) cnt from T_START group by app_num HAVING count(*)>1 ) AS A 
+WHERE A.app_n = app_num and id<>mn;
+
+
+select app_num app_n from T_START group by app_num HAVING count(*)>1

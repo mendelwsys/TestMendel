@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Main-Class: su.darktime.TestVM
+Class-Path: file:drb/derbyclient.jar file:drb/derby.jar file:drb/derbyLo
+ cale_ru.jar file:drb/derbyrun.jar file:drb/derbyoptionaltools.jar file:
+ drb/derbynet.jar file:drb/derbytools.jar
+
