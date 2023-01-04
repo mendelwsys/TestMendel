@@ -1,4 +1,4 @@
-﻿Template application for start working with:
+# Template application for start working with:
 
 1. Java Swing
 2. SQL through JDBC on DerbyDb
