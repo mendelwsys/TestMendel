@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class ColumnHeadBean  implements Serializable
 {
+
     private  static final long serialVersionUID = -115115L ;
 
     public String getTitle() {
